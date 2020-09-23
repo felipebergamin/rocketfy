@@ -16,7 +16,11 @@ function Board() {
       produce(lists, (draft) => {
         const dragged = draft[fromList].cards[from];
         draft[fromList].cards.splice(from, 1);
-        draft[toList].cards.splice(to, 0, dragged);
+        if (to) {
+          draft[toList].cards.splice(to, 0, dragged);
+        } else {
+          draft[toList].cards.push(dragged);
+        }
       })
     );
   }
